@@ -2,13 +2,12 @@ import PropTypes from 'prop-types'
 import logos from '../assets/argentBankLogo.png'
 
 /**
-* Display welcome message 
-*
-
-* @return void
-* @author JP
-* @version 1.0
-*/
+ * Display footer
+ *
+ * @return void
+ * @author JP
+ * @version 1.0
+ */
 
 function Footer() {
   return (

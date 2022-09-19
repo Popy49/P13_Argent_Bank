@@ -5,13 +5,12 @@ import { selectFirstName, selectLastName } from '../utils/selector'
 import { useNavigate } from 'react-router-dom'
 
 /**
-* Display welcome message 
-*
-
-* @return void
-* @author JP
-* @version 1.0
-*/
+ * Display user edit form
+ *
+ * @return void
+ * @author JP
+ * @version 1.0
+ */
 
 function UserNamesEdit() {
   const dispatch = useDispatch()

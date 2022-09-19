@@ -5,26 +5,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faSignOut } from '@fortawesome/free-solid-svg-icons'
 import { selectFirstName, selectLogin, selecsaveUser } from '../utils/selector'
 import { useEffect } from 'react'
-import { fetchOrUpdateFreelance } from '../features/login'
-/**
-* Display welcome message 
-*
+import { fetchUserNames } from '../features/login'
 
-* @return void
-* @author JP
-* @version 1.0
-*/
+/**
+ * Display Header depends of user log in / out
+ *
+ * @return void
+ * @author JP
+ * @version 1.0
+ */
 
 function Header() {
   const dispatch = useDispatch()
   let navigate = useNavigate()
   const userIsLogin = useSelector(selectLogin)
-
   const saveUser = useSelector(selecsaveUser)
   var token = localStorage.getItem('token')
 
   useEffect(() => {
-    dispatch(fetchOrUpdateFreelance(token))
+    if (token) {
+      dispatch(fetchUserNames(token))
+    }
   }, [dispatch, token])
 
   const handleLogOut = async (e) => {
@@ -38,10 +39,10 @@ function Header() {
     navigate('/')
   }
   const firstName = useSelector(selectFirstName)
-  if (token) {
+
+  if (userIsLogin) {
     return (
       <div>
-        {console.log(token)}
         <nav className="main-nav">
           <Link to={`/`} className="main-nav-logo">
             <img
@@ -60,7 +61,7 @@ function Header() {
               <span>{`${firstName}`}</span>
             </Link>
             <button
-              className="main-nav-item flex-center"
+              className="main-nav-item flex-center sign-out-button"
               onClick={handleLogOut}
             >
               <FontAwesomeIcon

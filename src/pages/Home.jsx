@@ -1,16 +1,14 @@
-import PropTypes from 'prop-types'
 import moneyIcon from '../assets/icon-money.png'
 import chatIcon from '../assets/icon-chat.png'
 import securityIcon from '../assets/icon-security.png'
 
 /**
-* Display welcome message 
-*
-
-* @return void
-* @author JP
-* @version 1.0
-*/
+ * Display static Home page
+ *
+ * @return void
+ * @author JP
+ * @version 1.0
+ */
 
 function Home() {
   return (

@@ -1,42 +1,14 @@
-import PropTypes from 'prop-types'
-import moneyIcon from '../assets/icon-money.png'
-import chatIcon from '../assets/icon-chat.png'
-import securityIcon from '../assets/icon-security.png'
-import Header from '../components/Header'
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchOrUpdateFreelance } from '../features/login'
-import { selectFirstName } from '../utils/selector'
 import UserNamesEdit from '../components/UserNamesEdit'
 
-// async function userNames(token) {
-//   console.log(token.token)
-//   return fetch('http://localhost:3001/api/v1/user/profile', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Authorization: 'Bearer ' + token.token,
-//     },
-//   }).then((data) => data.json())
-// }
-
 /**
-* Display welcome message 
-*
-
-* @return void
-* @author JP
-* @version 1.0
-*/
+ * Display User page profile with static transactions
+ *
+ * @return void
+ * @author JP
+ * @version 1.0
+ */
 
 function User() {
-  const dispatch = useDispatch()
-  const token = localStorage.getItem('token')
-
-  useEffect(() => {
-    dispatch(fetchOrUpdateFreelance(token))
-  }, [dispatch, token])
-
   return (
     <div>
       <main className="main bg-dark">

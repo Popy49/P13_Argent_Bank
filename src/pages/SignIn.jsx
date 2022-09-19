@@ -4,10 +4,9 @@ import { useDispatch } from 'react-redux'
 import { login, saveUser } from '../features/login'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
-import { fetchOrUpdateFreelance } from '../features/login'
+import { fetchUserNames } from '../features/login'
 
 async function loginUser(credentials) {
-  console.log(credentials)
   return fetch('http://localhost:3001/api/v1/user/login', {
     method: 'POST',
     headers: {
@@ -18,13 +17,12 @@ async function loginUser(credentials) {
 }
 
 /**
-* Display welcome message 
-*
-
-* @return void
-* @author JP
-* @version 1.0
-*/
+ * Display Sign in page
+ *
+ * @return void
+ * @author JP
+ * @version 1.0
+ */
 
 function SignIn() {
   const [email, setUserName] = useState()
@@ -42,12 +40,10 @@ function SignIn() {
     })
     if (tokenID.status === 200) {
       localStorage.setItem('token', tokenID.body.token)
-      console.log(saveUser())
       dispatch(login())
-      dispatch(fetchOrUpdateFreelance(tokenID.body.token))
+      dispatch(fetchUserNames(tokenID.body.token))
       navigate('/user')
     } else if (tokenID.status === 400) {
-      console.log(tokenID)
       setemailError(tokenID.message)
     }
   }
@@ -66,7 +62,7 @@ function SignIn() {
 
           <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
-              <label for="username">Username</label>
+              <label htmlFor="username">Username</label>
               <input
                 type="text"
                 id="username"
@@ -74,7 +70,7 @@ function SignIn() {
               />
             </div>
             <div className="input-wrapper">
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 id="password"
@@ -87,7 +83,7 @@ function SignIn() {
                 id="remember-me"
                 onChange={(e) => handleSaveUser(e.target.value)}
               />
-              <label for="remember-me">Remember me</label>
+              <label htmlFor="remember-me">Remember me</label>
             </div>
             {emailError === '' ? (
               ''

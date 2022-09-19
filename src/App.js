@@ -12,13 +12,9 @@ import { selectLogin } from './utils/selector'
 import { login } from './features/login'
 
 function App() {
-  // const token = useSelector((state) => state.user)
-  //ajouter ca dans un use effect
   const token = localStorage.getItem('token')
   const dispatch = useDispatch()
-  // if (token) {
-  //   dispatch(login())
-  // }
+
   useEffect(() => {
     if (token) {
       dispatch(login())

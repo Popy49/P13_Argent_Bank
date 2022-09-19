@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-// import { selectFreelances } from '../utils/selector'
 
-// Le state initial de la feature freelances
+// Initial state
 const initialState = {
   userIsLogin: false,
   saveUser: false,
@@ -9,10 +8,16 @@ const initialState = {
   lastName: null,
 }
 
-export function fetchOrUpdateFreelance(token) {
+/**
+ * Fetch usernames and add it to the store
+ * @params string of the token
+ * @return void
+ * @author JP
+ * @version 1.0
+ */
+export function fetchUserNames(token) {
   return async (dispatch, getState) => {
     try {
-      // on utilise fetch pour faire la requête
       const response = await fetch(
         'http://localhost:3001/api/v1/user/profile',
         {
@@ -24,18 +29,22 @@ export function fetchOrUpdateFreelance(token) {
         }
       ).then((data) => data.json())
       dispatch(actions.getUserNames(response))
-    } catch (error) {
-      console.log('dada')
-      // dispatch(freelancesRejected(error))
-    }
+    } catch (error) {}
   }
 }
 
+/**
+ * Put new usernames and add it to the store
+ * @params string of the token
+ * @params string of the new firstname (default last one)
+ * @params string of the lastname (defult last one)
+ * @return void
+ * @author JP
+ * @version 1.0
+ */
 export function updateUserNames(token, firstName, lastName) {
-  // firstName?firstName:
   return async (dispatch, getState) => {
     try {
-      // on utilise fetch pour faire la requête
       const response = await fetch(
         'http://localhost:3001/api/v1/user/profile',
         {
@@ -51,12 +60,13 @@ export function updateUserNames(token, firstName, lastName) {
         }
       ).then((data) => data.json())
       dispatch(actions.getUserNames(response))
-    } catch (error) {
-      console.log(error)
-      // dispatch(freelancesRejected(error))
-    }
+    } catch (error) {}
   }
 }
+
+/**
+ * ACTIONS AND REDUCER of User
+ */
 
 const { actions, reducer } = createSlice({
   name: 'login',
